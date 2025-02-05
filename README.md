@@ -1,130 +1,146 @@
-# Ran_Hirschorn_final_prohect_repository
-# Statistical Analysis and Data Organization of a Research Group
+# Weather Monitoring and Analysis System
 
 ## Project Overview
-This project implements a system for analyzing and organizing cellular network data for environmental sensing applications. It processes data from multiple cellular operators, correlates metadata with raw data, and generates unified datasets for weather monitoring and analysis.
-
-## Features
-- Intelligent data correlation using GPT API
-- Memory-efficient NetCDF file generation
-- Parallel processing of large datasets
-- Automated metadata mapping
-- Multi-format file support (CSV, Excel, JSON)
+This project implements a comprehensive system for analyzing and organizing cellular network data for environmental sensing applications. It processes data from multiple cellular operators, correlates metadata with raw data, and generates unified datasets for weather monitoring and analysis.
 
 ## Project Structure
 ```
 project/
-├── src/
-│   ├── main.py                 # Main execution script
-│   ├── link_correlation.py     # Core correlation logic
-│   ├── chatgpt_correlation.py  # GPT API integration
-│   ├── column_mapping.py       # Column mapping utilities
-│   ├── read_file.py           # File reading utilities
-│   └── netcdf_processor.py    # NetCDF file generation
-├── config/
-│   └── .env                   # Environment configuration
-├── data/
-│   ├── raw_data/             # Raw input data
-│   ├── metadata/             # Metadata files
-│   └── output/               # Processed outputs
-└── docs/                     # Detailed documentation
+├── chatgpt_correlation/
+│   ├── main.py                  # Main execution script
+│   ├── link_correlation.py      # Core correlation logic
+│   ├── chatgpt_correlation.py   # GPT API integration
+│   ├── column_mapping.py        # Column mapping utilities
+│   └── read_file.py            # File reading utilities
+│
+├── netcdf/
+│   ├── create_netcdf_file.py    # NetCDF file generation
+│   ├── read_netcdf_file.py      # NetCDF file reading
+│   └── remove_duplicates.py     # Data cleaning utilities
+│
+├── data_analysis/
+│   ├── create_a_map.py          # Mapping functionality
+│   ├── change_coordinates_from_ITM.py  # Coordinate conversion
+│   ├── israel_network_map.html  # Network visualization
+│   │
+│   └── data_visualization/
+│       ├── load_data_and_visualize.py  # Data visualization
+│       ├── rain_estimator.py           # Rainfall estimation
+│       └── wet_and_dry_classification.py  # Weather classification
+│
+└── requirements.txt             # Project dependencies
 ```
 
-## Requirements
-- Python 3.8+
-- OpenAI API key
-- Required Python packages:
-  - pandas
-  - numpy
-  - xarray
-  - langchain
-  - openai
-  - chardet
-  - matplotlib
-  - typing
-  - folium
-  - netCDF4
+## Features
+- Intelligent metadata correlation using GPT API
+- Memory-efficient NetCDF file handling
+- Automated data processing and cleaning
+- Interactive network mapping
+- Advanced weather analysis and visualization
+- Coordinate system conversion
+- Rainfall estimation and classification
+
+## Components
+
+### ChatGPT Correlation
+Located in `chatgpt_correlation/`:
+- Intelligent matching of metadata with raw data
+- GPT-powered column mapping
+- Multi-format file support
+- Error handling and validation
+
+### NetCDF Processing
+Located in `netcdf/`:
+- Memory-efficient file creation
+- Data reading and validation
+- Duplicate removal and data cleaning
+- Time series management
+
+### Data Analysis
+Located in `data_analysis/`:
+- Interactive map creation
+- Coordinate system conversion (ITM to standard)
+- Network visualization
+- Weather pattern analysis
+- Rainfall estimation
+- Wet/dry period classification
 
 ## Installation
-1. Clone the repository
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/weather-monitoring-project.git
+cd weather-monitoring-project
+```
+
 2. Install required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Configure environment variables:
-   - Create `.env` file with:
-     ```
-     OPENAI_API_KEY=your_api_key
-     OPENAI_MODEL_NAME=your_model_name
-     ```
+```bash
+pip install -r requirements.txt
+```
+
+3. Set up environment variables:
+```bash
+# Create .env file with:
+OPENAI_API_KEY=your_api_key
+OPENAI_MODEL_NAME=your_model_name
+```
 
 ## Usage
-1. Prepare your data:
-   - Place raw data files in `data/raw_data/`
-   - Place metadata files in `data/metadata/`
-   - Ensure example metadata file is available
 
-2. Run the main script:
-   ```bash
-   python src/main.py
-   ```
+### Data Processing Pipeline
+1. Prepare your data files
+2. Run the correlation process:
+```bash
+cd chatgpt_correlation
+python main.py
+```
 
-3. Check outputs in `data/output/`:
-   - Consolidated metadata files
-   - NetCDF files
-   - Analysis results
+### NetCDF Processing
+```bash
+cd netcdf
+python create_netcdf_file.py
+```
 
-## Module Descriptions
+### Data Analysis and Visualization
+```bash
+cd data_analysis
+python create_a_map.py  # For network mapping
+cd data_visualization
+python load_data_and_visualize.py  # For data visualization
+```
 
-### main.py
-- Entry point for the application
-- Handles configuration and orchestration
-- Manages parallel processing
+## File Descriptions
 
-### link_correlation.py
-- Implements core correlation logic
-- Matches raw data with metadata
-- Handles batch processing
+### ChatGPT Correlation
+- `main.py`: Entry point and pipeline orchestration
+- `link_correlation.py`: Core correlation algorithms
+- `chatgpt_correlation.py`: GPT API integration
+- `column_mapping.py`: Intelligent column mapping
+- `read_file.py`: Multi-format file handling
 
-### chatgpt_correlation.py
-- Integrates with GPT API
-- Provides intelligent matching
-- Handles response processing
+### NetCDF Processing
+- `create_netcdf_file.py`: Generates NetCDF files
+- `read_netcdf_file.py`: Reads and processes NetCDF data
+- `remove_duplicates.py`: Cleans and deduplicates data
 
-### column_mapping.py
-- Manages column name mapping
-- Provides verification utilities
-- Handles data transformation
+### Data Analysis
+- `create_a_map.py`: Generates interactive maps
+- `change_coordinates_from_ITM.py`: Coordinate conversion
+- `israel_network_map.html`: Network visualization output
+- Data Visualization:
+  * `load_data_and_visualize.py`: Data visualization tools
+  * `rain_estimator.py`: Rainfall analysis
+  * `wet_and_dry_classification.py`: Weather classification
 
-### read_file.py
-- Handles multiple file formats
-- Provides encoding detection
-- Implements error handling
-
-### code_for_netcdf_file.py
-- Converts CSV data to NetCDF format
-- Implements memory-efficient chunked processing
-- Features:
-  * Automatic dimension detection
-  * Memory-optimized data processing
-  * Batch processing capabilities
-  * Progress tracking and timing
-  * Error handling and recovery
-- Input: CSV files with columns:
-  * DATETIME_ID (format: '%d/%m/%Y %I:%M:%S %p')
-  * KEY10NEW (link identifier)
-  * RxLevel (Received Signal Level in dBm)
-  * TxLevel (Transmitted Signal Level in dBm)
-- Output: NetCDF files with:
-  * Two dimensions: time and link
-  * Two variables: RxLevel and TxLevel
-  * Comprehensive metadata and attributes
+## Requirements
+See `requirements.txt` for detailed package dependencies.
 
 ## Contributing
 1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
 ## License
 [Your License Here]
