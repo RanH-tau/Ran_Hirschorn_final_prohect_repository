@@ -69,8 +69,8 @@ Located in `data_analysis/`:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/weather-monitoring-project.git
-cd weather-monitoring-project
+git clone https://github.com/RanH-tau/Ran_Hirschorn_final_prohect_repository.git
+cd Ran_Hirschorn_final_prohect_repository
 ```
 
 2. Install required packages:
