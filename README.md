@@ -40,6 +40,10 @@ project/
   - langchain
   - openai
   - chardet
+  - matplotlib
+  - typing
+  - folium
+  - netCDF4
 
 ## Installation
 1. Clone the repository
