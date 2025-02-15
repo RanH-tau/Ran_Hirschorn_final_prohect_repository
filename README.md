@@ -135,10 +135,3 @@ python load_data_and_visualize.py  # For data visualization
 ## Requirements
 See `requirements.txt` for detailed package dependencies.
 
-
-
-## License
-[Your License Here]
-
-## Contact
-[Your Contact Information]
